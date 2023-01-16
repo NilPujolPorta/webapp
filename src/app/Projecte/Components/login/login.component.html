@@ -1,1 +1,7 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+    <label for="correu">Correu:</label><br>
+    <input type="email" id="correu" name="correu" formControlName="correu"><br>
+    <label for="contrasenya">Contrasenya:</label><br>
+    <input type="password" id="contrasenya" name="contrasenya" formControlName="contrasenya"><br>
+    <button type="submit">Enviar</button>
+</form>
