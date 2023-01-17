@@ -1,6 +1,8 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
-    <label for="correu">Correu:</label><br>
-    <input type="email" id="correu" name="correu" formControlName="correu"><br>
+    <label for="nom">Correu:</label><br>
+    <input type="email" formControlName="email">
+    <div *ngIf="loginForm.get('email')!.invalid && loginForm.get('email')!.touched">El format del correu es invalid</div><br>
+
     <label for="contrasenya">Contrasenya:</label><br>
     <input type="password" id="contrasenya" name="contrasenya" formControlName="contrasenya"><br>
     <button type="submit">Enviar</button>

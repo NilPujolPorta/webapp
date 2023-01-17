@@ -1,0 +1,12 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSubmitSignup()">
+
+    <label for="nom">Nom:</label><br>
+    <input type="text" id="nom" name="nom" formControlName="nom"><br>
+    <label for="nom">Correu:</label><br>
+    <input type="email" formControlName="email">
+    <div *ngIf="signupForm.get('email')!.invalid && signupForm.get('email')!.touched">El format del correu es invalid</div><br>
+
+    <label for="contrasenya">Contrasenya:</label><br>
+    <input type="password" id="contrasenya" name="contrasenya" formControlName="contrasenya"><br>
+    <button type="submit">Enviar</button>
+</form>
