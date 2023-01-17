@@ -5,7 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Projecte/Components/login/login.component';
 import { SignupComponent } from './Projecte/Components/signup/signup.component';
-
+import { CalendariComponent } from './Projecte/Components/calendari/calendari.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { } from '@fullcalendar/interaction';
 
 
 @NgModule({
@@ -13,12 +15,14 @@ import { SignupComponent } from './Projecte/Components/signup/signup.component';
     AppComponent,
     LoginComponent,
     SignupComponent,
+    CalendariComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
