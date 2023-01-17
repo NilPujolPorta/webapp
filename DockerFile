@@ -1,7 +1,6 @@
-FROM node:18.12.1
 
-WORKDIR /webapp
-COPY package.json .
-RUN npm install
+FROM node:latest as node
+WORKDIR /app
 COPY . .
+RUN npm install
 CMD npm start
