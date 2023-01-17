@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Projecte/Components/login/login.component';
 import { SignupComponent } from './Projecte/Components/signup/signup.component';
-
+import {MenubarModule} from 'primeng/menubar';
+import { NavBarComponent } from './Utils/nav-bar/nav-bar.component';
 
 
 @NgModule({
@@ -13,12 +14,14 @@ import { SignupComponent } from './Projecte/Components/signup/signup.component';
     AppComponent,
     LoginComponent,
     SignupComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MenubarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
