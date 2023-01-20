@@ -21,13 +21,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignupComponent,
     CalendarComponent
   ],
-  imports: [
+  imports: [ 
+    MbscModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MbscModule,
     CheckboxModule,
     CalendarModule,
     BrowserAnimationsModule

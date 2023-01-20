@@ -1,9 +1,10 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
-    <label for="nom">Correu:</label><br>
-    <input type="email" formControlName="email">
-    <div *ngIf="loginForm.get('email')!.invalid && loginForm.get('email')!.touched">El format del correu es invalid</div><br>
-
-    <label for="contrasenya">Contrasenya:</label><br>
-    <input type="password" id="contrasenya" name="contrasenya" formControlName="contrasenya"><br>
-    <button type="submit">Enviar</button>
-</form>
+<div class="login">
+  <div class="login-triangle"></div>
+  
+  <h2 class="login-header">Log in</h2>
+  <form  [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()" class="login-container">
+    <p><input type="email" formControlName="email" placeholder="Correu"><div *ngIf="loginForm.get('email')!.invalid && loginForm.get('email')!.touched">El format del correu es invalid</div></p>
+    <p><input type="password" id="contrasenya" name="contrasenya" formControlName="contrasenya" placeholder="Contrasenya"></p>
+    <p><input type="submit" value="Enviar"></p>
+  </form>
+</div>
