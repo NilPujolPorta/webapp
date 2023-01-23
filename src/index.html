@@ -7,8 +7,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="../../node_modules/@mobiscroll/angular/dist/css/mobiscroll.min.css" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <app-root></app-root>
 </body>
+<script>
+  function addClass(elem) {
+    for (let i = 0; i < elem.length; i++) {
+      elem[i].addEventListener("click", function(e) {
+        const current = this;
+        for (let i = 0; i < elem.length; i++) {
+          if (current !== elem[i]) {
+            elem[i].classList.remove("isActive");
+            elem[i].classList.add("notActive");
+          } else {
+            current.classList.add("isActive");
+            current.classList.remove("notActive");
+          }
+        }
+        e.preventDefault();
+      });
+    }
+  }
+  addClass(document.querySelectorAll(".link"));
+</script>
 </html>
+
