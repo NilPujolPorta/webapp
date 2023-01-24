@@ -8,9 +8,15 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent {
   title = 'webapp';
+  autenticat:boolean = false;
+  showLogin:boolean = false;
+
+
   constructor(private primengConfig: PrimeNGConfig) { }
 
   ngOnInit() {
     this.primengConfig.ripple = true;
   }
+
+
 }
