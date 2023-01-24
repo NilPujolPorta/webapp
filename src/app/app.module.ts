@@ -23,13 +23,13 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
     CalendarComponent,
     BottomNavBarComponent
   ],
-  imports: [
+  imports: [ 
+    MbscModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MbscModule,
     CheckboxModule,
     CalendarModule,
     BrowserAnimationsModule
