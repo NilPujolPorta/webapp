@@ -13,13 +13,15 @@ import { CalendarComponent } from './Projecte/Components/calendar/calendar.compo
 import { CheckboxModule } from 'primeng/checkbox';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    CalendarComponent
+    CalendarComponent,
+    BottomNavBarComponent
   ],
   imports: [ 
     MbscModule,
