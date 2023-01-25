@@ -6,7 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Projecte/Components/login/login.component';
 import { SignupComponent } from './Projecte/Components/signup/signup.component';
-
+import { ListComponent } from './Projecte/Components/list/list.component';
+import { MatTableModule } from '@angular/material/table'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CalendarComponent } from './Projecte/Components/calendar/calendar.component';
@@ -21,7 +22,8 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
     LoginComponent,
     SignupComponent,
     CalendarComponent,
-    BottomNavBarComponent
+    BottomNavBarComponent,
+    ListComponent
   ],
   imports: [ 
     MbscModule,
@@ -32,7 +34,8 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
     HttpClientModule,
     CheckboxModule,
     CalendarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
