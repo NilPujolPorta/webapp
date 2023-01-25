@@ -1,4 +1,4 @@
-import { IUsuari } from "../../Interfaces/Usuari/IUsuari";
+import { IUsuari } from "../../Interfaces/IUsuari/IUsuari";
 
 export class Usuari implements IUsuari{
     usuari: string;
