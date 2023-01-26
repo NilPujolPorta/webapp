@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { catchError, Subscription, take, throwError } from 'rxjs';
+import { guardiaApi } from '../../Serveis/Api/guardiaApi';
 
 @Component({
   selector: 'app-list',
@@ -6,27 +8,87 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  data = [
-    {id: 1, name: 'Rajesh', email: 'rajesh@gmail.com', a: 'rajesh@gmail.com'},
-    {id:2, name: 'Paresh', email: 'paresh@gmail.com', a: 'rajesh@gmail.com'},
-    {id:3, name: 'Naresh', email: 'naresh@gmail.com', a: 'rajesh@gmail.com'},
-    {id:4, name: 'Suresh', email: 'suresh@gmail.com', a: 'rajesh@gmail.com'},
-    {id:5, name: 'Karan', email: 'karan@gmail.com', a: 'rajesh@gmail.com'},
-    {id:6, name: 'dummy', email: 'dummy@gmail.com', a: 'rajesh@gmail.com'},
-    {id:7, name: 'dummy1', email: 'dummy@gmail.com', a: 'rajesh@gmail.com'},
-    {id:8, name: 'dummy2', email: 'dummy@gmail.com', a: 'rajesh@gmail.com'},
-    {id:9, name: 'dummy3', email: 'dummy@gmail.com', a: 'rajesh@gmail.com'},
-    {id:10, name: 'dummy4', email: 'dummy@gmail.com', a: 'rajesh@gmail.com'},
-    {id:11, name: 'dummy5', email: 'dummy@gmail.com', a: 'rajesh@gmail.com'},
-    {id:12, name: 'dummy6', email: 'dummy@gmail.com', a: 'rajesh@gmail.com'},
-    {id:13, name: 'dummy7', email: 'dummy@gmail.com', a: 'rajesh@gmail.com'},
-    {id:14, name: 'dummy8', email: 'dummy@gmail.com', a: 'rajesh@gmail.com'},
-  ];
-  displayedColumns = ['id', 'name', 'email', 'a'];
-  
-  constructor() { }
+  guardies!: Array<any>
+  //guardia!: Guardia;
+  error!: string;
+  subscriptions!: Subscription[];
+  data!: Array<any>;
+  displayedColumns = ['data', 'torn', 'categoria', 'zona', 'estat'];
 
-  ngOnInit() {
+  constructor(private httpClient: guardiaApi) {
+    //this.guardia = new Guardia();
+    this.subscriptions = new Array<Subscription>();
+
+    //this.getGuardies();
+
+    
+
+  /*this.httpClient.getGuardies().subscribe(
+    response => {
+      //console.log("Dins subscribe");
+      //console.log(response)
+      this.guardies = response.data;
+    });*/
+  }
+  ngOnInit(): void {
+    this.getGuardiesTreballador("maria@hospital.com")
+    console.log("--------------")
+    console.log(this.guardies)
+    console.log("--------------")
+  }
+
+  ngOnDestroy(): void {
+    this.logSubscriptions();
+    this.subscriptions.forEach((s, index) => {
+      s.unsubscribe();
+    }
+    )
+    this.logSubscriptions();
+  }
+
+  getGuardies() {
+    //this.subscriptions.push(
+      this.httpClient.getGuardies().pipe(
+        take(1),
+        catchError((err: any) => {
+          return throwError(() => new Error("Error al agafar guardia"))
+        })
+      ).subscribe({
+        next: (x) => {
+          this.guardies = x;
+        },
+        error: (err: any) => {
+          console.log(err.message)
+        },
+        complete: () => {},
+      })
+  }
+
+  getGuardiesTreballador(treballador: string) {
+    //this.subscriptions.push(
+      this.httpClient.getGuardiesTreballador(treballador).pipe(
+        take(1),
+        catchError((err: any) => {
+          return throwError(() => new Error("Error al agafar guardia"))
+        })
+      ).subscribe({
+        next: (x) => {
+          this.guardies = x;
+          console.log(this.guardies)
+          this.data = this.guardies
+        },
+        error: (err: any) => {
+          console.log(err.message)
+        },
+        complete: () => {},
+      })
+  }
+
+  private logSubscriptions() {
+    this.subscriptions.forEach((s, index) => {
+      console.log(index + " - " + s.closed);
+    }
+    )
   }
 
 }

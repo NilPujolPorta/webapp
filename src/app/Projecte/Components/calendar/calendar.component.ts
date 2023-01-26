@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpClientJsonpModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { localeEs, MbscCalendarEvent, MbscEventcalendarOptions, Notifications } from '@mobiscroll/angular';
 
@@ -46,9 +46,9 @@ export class CalendarComponent implements OnInit {
   };
 
   ngOnInit(): void {
-      this.http.jsonp<MbscCalendarEvent[]>('https://trial.mobiscroll.com/events/?vers=5', 'callback').subscribe((resp) => {
+      /*this.http.jsonp<MbscCalendarEvent[]>('https://trial.mobiscroll.com/events/?vers=5', 'callback').subscribe((resp) => {
           this.myEvents = resp;
-      });
+      });*/
   }
 
 }
