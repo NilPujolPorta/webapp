@@ -1,8 +1,13 @@
 <div class="login">
     <div class="login-triangle"></div>
-    
-    <h2 class="login-header">Sign Up</h2>
-  
+    <div class="title-div">
+      <div class="signup-div">
+        <h2 class="signup-header">Sign up</h2>
+      </div>
+      <div class="login-div">
+        <h2 class="login-header">Log in</h2>
+      </div>
+    </div>
     <form class="login-container" [formGroup]="signupForm" (ngSubmit)="onSubmitSignup()">
       <p><input type="text" id="nom" name="nom" formControlName="nom" placeholder="Nom"></p>
       <p><input type="email" formControlName="email" placeholder="Correu"><div *ngIf="signupForm.get('email')!.invalid && signupForm.get('email')!.touched">El format del correu es invalid</div></p>
