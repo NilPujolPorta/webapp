@@ -18,27 +18,27 @@ export class BottomNavBarComponent implements OnInit {
   }
 
   submit() {
-    this.btnStyle = 'isActive';
+    this.btnStyle = 'selected';
     this.btnStyle2 = '';
     this.btnStyle3 = '';
     this.btnStyle2 = '';
   }
   submit2() {
     this.btnStyle = '';
-    this.btnStyle2 = 'isActive';
+    this.btnStyle2 = 'selected';
     this.btnStyle3 = '';
     this.btnStyle4 = '';
   }
   submit3() {
     this.btnStyle = '';
     this.btnStyle2 = '';
-    this.btnStyle3 = 'isActive';
+    this.btnStyle3 = 'selected';
     this.btnStyle4 = '';
   }
   submit4() {
     this.btnStyle = '';
     this.btnStyle2 = '';
     this.btnStyle3 = '';
-    this.btnStyle4 = 'isActive';
+    this.btnStyle4 = 'selected';
   }
 }

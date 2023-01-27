@@ -1,30 +1,33 @@
-<div class="container d-flex flex-column flex-1 align-items-center justify-content-center">
-  <nav>
-    <ul>
-      <li>
-        <a (click)="submit()" class="d-flex justify-content-center align-items-center link" [ngClass]="btnStyle">
-          <i class="material-icons-outlined">home</i>
-          <span>home</span>
-        </a>
-      </li>
-      <li>
-        <a (click)="submit2()" class="d-flex justify-content-center align-items-center link" [ngClass]="btnStyle2">
-          <i class="material-icons-outlined">search</i>
-          <span>search</span>
-        </a>
-      </li>
-      <li>
-        <a (click)="submit3()" class="d-flex justify-content-center align-items-center link" [ngClass]="btnStyle3">
-          <i class="material-icons-outlined">notifications</i>
-          <span>notifications</span>
-        </a>
-      </li>
-      <li>
-        <a (click)="submit4()" class="d-flex justify-content-center align-items-center link" [ngClass]="btnStyle4">
-          <i class="material-icons-outlined">settings</i>
-          <span>settings</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</div>
+<nav class="bottom-bar">
+  <ul class="bottom-bar__list">
+    <div *ngIf="btnStyle == 'selected'">
+      <div  class="bottom-bar__active-indicator.active--1"></div>
+    </div>
+
+    <li (click)="submit()" [routerLink]="['/home']" class="bottom-bar__link" [ngClass]="btnStyle">
+      <span class="material-icons-outlined">
+        home
+      </span>Home</li>
+      <div *ngIf="btnStyle2 == 'selected'">
+        <div  class="bottom-bar__active-indicator.active--1"></div>
+      </div>
+    <li (click)="submit2()" [routerLink]="['/calendar']" class="bottom-bar__link" [ngClass]="btnStyle2">
+      <span class="material-icons-outlined">
+        calendar_month
+      </span>Explore</li>
+      <div *ngIf="btnStyle3 == 'selected'">
+        <div  class="bottom-bar__active-indicator.active--1"></div>
+      </div>
+    <li (click)="submit3()" [routerLink]="['/notifications']" class="bottom-bar__link" [ngClass]="btnStyle3">
+      <span class="material-icons-outlined">
+        notifications
+      </span>Notifications</li>
+      <div *ngIf="btnStyle4 == 'selected'">
+        <div  class="bottom-bar__active-indicator.active--1"></div>
+      </div>
+    <li (click)="submit4()" [routerLink]="['/profile']" class="bottom-bar__link" [ngClass]="btnStyle4">
+      <span class="material-icons-outlined">
+        person
+      </span>Profile</li>
+  </ul>
+</nav>
