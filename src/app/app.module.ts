@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Projecte/Components/login/login.component';
 import { SignupComponent } from './Projecte/Components/signup/signup.component';
+import { ListComponent } from './Projecte/Components/list/list.component';
+import { MatTableModule } from '@angular/material/table'
 import { AdminCreateUserComponent } from './Projecte/Components/admin-create-user/admin-create-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +24,7 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
     SignupComponent,
     CalendarComponent,
     BottomNavBarComponent,
+    ListComponent
     AdminCreateUserComponent
   ],
   imports: [ 
@@ -33,7 +36,8 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
     HttpClientModule,
     CheckboxModule,
     CalendarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
