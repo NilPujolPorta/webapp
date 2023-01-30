@@ -31,7 +31,7 @@ export class ListComponent implements OnInit {
     });*/
   }
   ngOnInit(): void {
-    this.getGuardiesTreballador("maria@hospital.com")
+    this.getGuardiesTreballador("admin")
     console.log("--------------")
     console.log(this.guardies)
     console.log("--------------")
