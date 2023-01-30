@@ -8,11 +8,10 @@
     <body>
       <div class="row">
     <div class="col-md-12">
+
       <form action="index.html" method="post">
         <h1> Crear Usuari </h1>
-        
         <fieldset>
-          
           <legend><span class="number">1</span> Informacio Basica</legend>
         
           <label for="nom">Nom:</label>
@@ -26,14 +25,16 @@
        
           <label for="password">Contrasenya:</label>
           <input type="password" id="password" name="user_password">
+       
+          <label for="password">Repetir contrasenya:</label>
+          <input type="password" id="reppassword" name="rep_user_password">
 
         </fieldset>
         <fieldset>  
         
           <legend><span class="number">2</span> Caracteristiques</legend>
           
-       
-        
+          
          <label for="job">Rol:</label>
           <select id="job" name="user_job">
             <optgroup label="Web">
