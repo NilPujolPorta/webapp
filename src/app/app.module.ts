@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Projecte/Components/login/login.component';
 import { SignupComponent } from './Projecte/Components/signup/signup.component';
-
+import { AdminCreateUserComponent } from './Projecte/Components/admin-create-user/admin-create-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CalendarComponent } from './Projecte/Components/calendar/calendar.component';
@@ -21,7 +21,8 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
     LoginComponent,
     SignupComponent,
     CalendarComponent,
-    BottomNavBarComponent
+    BottomNavBarComponent,
+    AdminCreateUserComponent
   ],
   imports: [ 
     MbscModule,
