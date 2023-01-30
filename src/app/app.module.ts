@@ -24,7 +24,7 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
     SignupComponent,
     CalendarComponent,
     BottomNavBarComponent,
-    ListComponent
+    ListComponent,
     AdminCreateUserComponent
   ],
   imports: [ 
