@@ -1,8 +1,7 @@
-<router-outlet></router-outlet>
-<div *ngIf="!showLogin">
+
+<div *ngIf="!autenticat">
   <app-login></app-login>
-  <app-signup></app-signup>
 </div>
-<app-bottom-nav-bar *ngIf="!autenticat"></app-bottom-nav-bar>
+<app-bottom-nav-bar *ngIf="autenticat"></app-bottom-nav-bar>
 
 

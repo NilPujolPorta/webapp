@@ -11,9 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CalendarComponent } from './Projecte/Components/calendar/calendar.component';
 import { CheckboxModule } from 'primeng/checkbox';
-import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-nav-bar.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,7 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
     CalendarComponent,
     BottomNavBarComponent
   ],
-  imports: [ 
+  imports: [
     MbscModule,
     BrowserModule,
     AppRoutingModule,
@@ -32,7 +34,9 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
     HttpClientModule,
     CheckboxModule,
     CalendarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

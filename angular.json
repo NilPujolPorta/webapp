@@ -25,6 +25,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/angular-calendar/css/angular-calendar.css",
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "node_modules/angular-calendar/css/angular-calendar.css",
               "node_modules/primeng/resources/themes/lara-light-indigo/theme.css",
@@ -96,6 +98,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-calendar/css/angular-calendar.css",
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.css"
