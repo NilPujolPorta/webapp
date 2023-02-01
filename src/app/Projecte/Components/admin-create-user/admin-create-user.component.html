@@ -8,25 +8,31 @@
     <body>
       <div class="row">
     <div class="col-md-12">
-      <form action="index.html" method="post">
+
+      <form [formGroup]="userForm" (ngSubmit)="onSubmitUser()">
         <h1> Crear Usuari </h1>
         <fieldset>
           <legend><span class="number">1</span> Informacio Basica</legend>
         
           <label for="nom">Nom:</label>
-          <input type="text" id="nom" name="nom">
+          <input type="text" id="nom" name="nom" formControlName="nom">
+          <p class="error">{{errors.nom}}</p>
         
           <label for="cognom">Cognoms:</label>
-          <input type="text" id="cognom" name="cognom">
+          <input type="text" id="cognom" name="cognom" formControlName="cognom">
+          <p class="error">{{errors.cognom}}</p>
         
-          <label for="email">Email:</label>
-          <input type="email" id="mail" name="user_email">
+          <label for="email">Usuari:</label>
+          <input type="text" id="mail" name="user_email" formControlName="usuari">
+          <p class="error">{{errors.usuari}}</p>
        
           <label for="password">Contrasenya:</label>
-          <input type="password" id="password" name="user_password">
+          <input type="password" id="password" name="user_password" formControlName="contrasenya">
+          <p class="error">{{errors.contrasenya}}</p>
        
           <label for="password">Repetir contrasenya:</label>
-          <input type="password" id="reppassword" name="rep_user_password">
+          <input type="password" id="reppassword" name="rep_user_password" formControlName="repcontrasenya">
+          <p class="error">{{errors.repcontrasenya}}</p>
 
         </fieldset>
         <fieldset>  
@@ -34,36 +40,20 @@
           <legend><span class="number">2</span> Caracteristiques</legend>
           
           
-         <label for="job">Rol:</label>
-          <select id="job" name="user_job">
-            <optgroup label="Web">
-              <option value="frontend_developer">Front-End Developer</option>
-              <option value="php_developer">PHP Developer</option>
-              <option value="python_developer">Python Developer</option>
-              <option value="rails_developer">Rails Developer</option>
-              <option value="web_designer">Web Designer</option>
-              <option value="wordpress_developer">Wordpress Developer</option>
-            </optgroup>
-            <optgroup label="Mobile">
-              <option value="android_developer">Android Developer</option>
-              <option value="ios_developer">IOS Developer</option>
-              <option value="mobile_designer">Mobile Designer</option>
-            </optgroup>
-            <optgroup label="Business">
-              <option value="business_owner">Business Owner</option>
-              <option value="freelancer">Freelancer</option>
-            </optgroup>
+          <label for="job">Categoria:</label>
+          <select id="job" name="user_job" formControlName="categoria">
+              <option value="Infermeria">Infermeria</option>
+              <option value="TCAI">TCAI</option>
           </select>
+          <p class="error">{{errors.categoria}}</p>
           
-          <label>Categoria:</label>
-          <input type="checkbox" id="usuari" value="usuari" name="usuari" checked="true"><label class="light" for="development">Usuari</label><br>
-          <input type="checkbox" id="admin" value="admin" name="admin"><label class="light" for="design">Admin</label><br>
+          <label>Rol:</label>
+          <input type="checkbox" id="admin" value="admin" name="admin" formControlName="rol"><label class="light" for="design">Admin</label><br>
           
          </fieldset>
-       
-        <button type="submit">Crear</button>
-        
-       </form>
+         <p class="error">{{missatge}}</p>
+         <button type="submit">Crear</button>
+      </form>
         </div>
       </div>
       

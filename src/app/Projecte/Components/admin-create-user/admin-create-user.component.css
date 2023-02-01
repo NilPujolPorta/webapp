@@ -94,6 +94,11 @@
     display: inline;
   }
   
+  .error{
+    color: red;
+  }
+
+
   .number {
     background-color: #5fcf80;
     color: #fff;
