@@ -30,6 +30,7 @@ export class AdminCreateUserComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.missatge = "";
     this.userForm = new FormGroup({
       nom: new FormControl('', [Validators.required]),
       cognom: new FormControl('', [Validators.required]),
