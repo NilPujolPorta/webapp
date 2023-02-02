@@ -5,5 +5,5 @@ export interface ITreballador {
     cognoms:string;
     categoria:string;
     rol:string;
-    actiu:boolean;
+    usuariMOD:string;
 }
