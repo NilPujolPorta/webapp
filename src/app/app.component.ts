@@ -41,6 +41,7 @@ export class AppComponent {
             LoginDAO.save("accessToken",(<any>token)['accessToken']);
             LoginDAO.save("refreshToken", (<any>token)['refreshToken']);
             this.autenticat = true;
+
           }
         }
         else {
@@ -48,7 +49,15 @@ export class AppComponent {
           this.router.navigate(['/login']);
         }
 
-      });
+      },
+      err => {
+        console.log(err)
+        this.router.navigate(['/login'])
+        LoginDAO.save("accessToken","");
+        LoginDAO.save("refreshToken","");
+      }
+
+      );
     } catch (err) {
       this.router.navigate(['/login']);
       this.title = 'Ups a error';

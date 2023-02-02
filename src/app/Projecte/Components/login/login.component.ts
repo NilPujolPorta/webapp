@@ -30,12 +30,9 @@ export class LoginComponent implements OnInit {
 
   autentificar() {
     var login:Login = Login.inicialitzar(this.usuari!,this.password!);
-    console.log( JSON.stringify(login));
 
     this.loginWebService.autentificar(login).subscribe(token => {
        if (token!=null) {
-          console.log(token)
-          console.log("access token -> "+(<any>token)['accessToken'])
           LoginDAO.save("accessToken",(<any>token)['accessToken']);
           LoginDAO.save("refreshToken", (<any>token)['refreshToken']);
           this.errorDades = false;
