@@ -20,31 +20,43 @@ export class AppComponent {
     this.currentRoute = "";
     this.router.events.subscribe(e => {
       if (e instanceof NavigationStart) if (e.url != "/login") {
-          this.autenticat = true;
+        this.autenticat = true;
+        if(LoginDAO.get("refreshToken") == null || LoginDAO.get("accessToken") == null){
+          this.autenticat = false;
+          this.router.navigate(['/login']);
+        } else {
           this.verificarToken();
-          this.loginWebService.getToken().subscribe(token => {
-              this.rol =  JSON.parse(token).rol;
-          });
+        }
       }
       else this.autenticat = false;
     });
   }
 
   verificarToken() {
-    this.loginWebService.verificarToken().subscribe(
-      {
-        next: (v) => {
-          if (this.prorrogarToken(v)) {
-            console.log(v['response'][0]),
-            LoginDAO.save(JSON.stringify(JSON.parse(v['response'][0]).new));
+    try {
+      this.loginWebService.verificarToken().subscribe(token => {
+        if (token != null) {
+          if((<any>token)['tokenOK'] != "tokenOK") {
+            console.log("TOKEN VERIFIED")
+            LoginDAO.save("accessToken",(<any>token)['accessToken']);
+            LoginDAO.save("refreshToken", (<any>token)['refreshToken']);
+            this.autenticat = true;
           }
-        },
-        error: (e) => { this.router.navigate(['/login']); }       // **** Cal veure què s'ha de fer
-      }
-    );
+        }
+        else {
+          console.log("Empty token")
+          this.router.navigate(['/login']);
+        }
+
+      });
+    } catch (err) {
+      this.router.navigate(['/login']);
+      this.title = 'Ups a error';
+    }
   }
 
-  prorrogarToken(token: any):boolean {
-    return Object.keys(token).length!==0 && JSON.parse(token['response'][0]).new.length!==0;
-  }
+
+  logout(token: any) {
+    LoginDAO.clear(token);
+}
 }

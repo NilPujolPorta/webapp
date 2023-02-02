@@ -125,7 +125,6 @@
 
     constructor(private modal: NgbModal) {}
     ngOnInit(): void {
-      throw new Error('Method not implemented.');
     }
 
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {

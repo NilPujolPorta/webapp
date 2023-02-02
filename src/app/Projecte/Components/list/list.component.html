@@ -1,0 +1,32 @@
+<div class="example-container mat-elevation-z8">
+  <table mat-table [dataSource]="data" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="data">
+      <th mat-header-cell *matHeaderCellDef> Dia </th>
+      <td mat-cell *matCellDef="let element"> {{element.data}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="torn">
+      <th mat-header-cell *matHeaderCellDef> Torn </th>
+      <td mat-cell *matCellDef="let element"> {{element.torn}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="categoria">
+      <th mat-header-cell *matHeaderCellDef> Categoria </th>
+      <td mat-cell *matCellDef="let element"> {{element.categoria}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="zona">
+      <th mat-header-cell *matHeaderCellDef> Zona </th>
+      <td mat-cell *matCellDef="let element"> {{element.zona}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="estat">
+      <th mat-header-cell *matHeaderCellDef> Estat </th>
+      <td mat-cell *matCellDef="let element"> {{element.estat}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

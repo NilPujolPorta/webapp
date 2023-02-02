@@ -34,10 +34,12 @@ export class LoginComponent implements OnInit {
 
     this.loginWebService.autentificar(login).subscribe(token => {
        if (token!=null) {
-            token = (<any>token)['accessToken'];
-            LoginDAO.save(<any>token!);
-            this.errorDades = false;
-            this.router.navigate(['/calendar']);
+          console.log(token)
+          console.log("access token -> "+(<any>token)['accessToken'])
+          LoginDAO.save("accessToken",(<any>token)['accessToken']);
+          LoginDAO.save("refreshToken", (<any>token)['refreshToken']);
+          this.errorDades = false;
+          this.router.navigate(['/calendar']);
        }
        else {
         this.errorDades = true;
@@ -53,18 +55,15 @@ export class LoginComponent implements OnInit {
   clearData() {
     this.usuari = ""; this.password = "";
   }
-  prorrogarToken(token: any):boolean {
-    return Object.keys(token).length!==0 && JSON.parse(token['response'][0]).new.length!==0;
-  }
 
   verificarToken() {
     this.loginWebService.verificarToken().subscribe(
       {
         next: (v) => {
-          if (this.prorrogarToken(v)) {
-            console.log(v['response'][0]),
-            LoginDAO.save(JSON.stringify(JSON.parse(v['response'][0]).new));
-          }
+            console.log(v)
+            LoginDAO.save("refreshToken",JSON.stringify(JSON.parse(v['refreshToken'])));
+            console.log("VERIFICAR TOKEN LOGIN")
+            console.log(JSON.stringify(JSON.parse(v['refreshToken'])))
         },
         error: (e) => console.error("Error en l'execució"),
       }

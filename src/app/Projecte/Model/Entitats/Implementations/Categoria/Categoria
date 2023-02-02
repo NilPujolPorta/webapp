@@ -1,0 +1,12 @@
+import { ICategoria } from "../../Interfaces/ICategoria/ICategoria";
+
+export class Categoria implements ICategoria{
+    nom:string;
+    actiu:boolean;
+
+
+    constructor(nom:string, actiu: boolean){
+        this.nom = nom;
+        this.actiu = actiu;
+    }
+}

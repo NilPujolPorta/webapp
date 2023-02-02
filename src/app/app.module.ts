@@ -6,7 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Projecte/Components/login/login.component';
 import { SignupComponent } from './Projecte/Components/signup/signup.component';
-
+import { ListComponent } from './Projecte/Components/list/list.component';
+import { AdminCreateUserComponent } from './Projecte/Components/admin-create-user/admin-create-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CalendarComponent } from './Projecte/Components/calendar/calendar.component';
@@ -16,6 +17,10 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatTableModule} from '@angular/material/table';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+
+
 
 @NgModule({
   declarations: [
@@ -23,7 +28,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     SignupComponent,
     CalendarComponent,
-    BottomNavBarComponent
+    BottomNavBarComponent,
+    ListComponent,
+    AdminCreateUserComponent
   ],
   imports: [
     MbscModule,
@@ -36,9 +43,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CalendarModule,
     BrowserAnimationsModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    NgbModule
+    NgbModule,
+    MatTableModule
   ],
-  providers: [],
+  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

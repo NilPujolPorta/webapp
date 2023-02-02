@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
+        <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+      <div class="row">
+    <div class="col-md-12">
+      <form action="index.html" method="post">
+        <h1> Crear Usuari </h1>
+        <fieldset>
+          <legend><span class="number">1</span> Informacio Basica</legend>
+        
+          <label for="nom">Nom:</label>
+          <input type="text" id="nom" name="nom">
+        
+          <label for="cognom">Cognoms:</label>
+          <input type="text" id="cognom" name="cognom">
+        
+          <label for="email">Email:</label>
+          <input type="email" id="mail" name="user_email">
+       
+          <label for="password">Contrasenya:</label>
+          <input type="password" id="password" name="user_password">
+       
+          <label for="password">Repetir contrasenya:</label>
+          <input type="password" id="reppassword" name="rep_user_password">
+
+        </fieldset>
+        <fieldset>  
+        
+          <legend><span class="number">2</span> Caracteristiques</legend>
+          
+          
+         <label for="job">Rol:</label>
+          <select id="job" name="user_job">
+            <optgroup label="Web">
+              <option value="frontend_developer">Front-End Developer</option>
+              <option value="php_developer">PHP Developer</option>
+              <option value="python_developer">Python Developer</option>
+              <option value="rails_developer">Rails Developer</option>
+              <option value="web_designer">Web Designer</option>
+              <option value="wordpress_developer">Wordpress Developer</option>
+            </optgroup>
+            <optgroup label="Mobile">
+              <option value="android_developer">Android Developer</option>
+              <option value="ios_developer">IOS Developer</option>
+              <option value="mobile_designer">Mobile Designer</option>
+            </optgroup>
+            <optgroup label="Business">
+              <option value="business_owner">Business Owner</option>
+              <option value="freelancer">Freelancer</option>
+            </optgroup>
+          </select>
+          
+          <label>Categoria:</label>
+          <input type="checkbox" id="usuari" value="usuari" name="usuari" checked="true"><label class="light" for="development">Usuari</label><br>
+          <input type="checkbox" id="admin" value="admin" name="admin"><label class="light" for="design">Admin</label><br>
+          
+         </fieldset>
+       
+        <button type="submit">Crear</button>
+        
+       </form>
+        </div>
+      </div>
+      
+    </body>
+</html>
