@@ -24,6 +24,9 @@
     CalendarView,
   } from 'angular-calendar';
   import { EventColor } from 'calendar-utils';
+import { GuardiasService } from '../../Model/api/guardsService';
+import { Guardia } from '../../Model/api/entities/guardia/Guardia';
+import { Guardias } from '../../Model/api/entities/guardies/guardies';
 
   const colors: Record<string, EventColor> = {
     red: {
@@ -123,8 +126,25 @@
 
     activeDayIsOpen: boolean = true;
 
-    constructor(private modal: NgbModal) {}
+    guardies!: Guardias;
+
+    constructor(private modal: NgbModal, private guardsService: GuardiasService) {}
+
     ngOnInit(): void {
+      this.searchEvents();
+      this.createCalendarEvents();
+    }
+    createCalendarEvents() {
+        this.guardies.guardias.forEach(obj => {
+          this.actions.push(
+          )
+        });
+    }
+
+    searchEvents() {
+      this.guardsService.getGuardias().subscribe(guardies => {
+        this.guardies = guardies;
+      });
     }
 
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
