@@ -20,7 +20,8 @@ export class guardiaApi {
     }
 
     getGuardies():Observable<any>{
-        return this.http.get("http://localhost:4000/api/guardia/", this.requestOptions);
+        console.log("aaaaa")
+        return this.http.get("http://localhost:4000/api/guardia/getGuardies", this.requestOptions);
     }
     
     getGuardiesTreballador(treballador: string):Observable<any>{
@@ -29,6 +30,26 @@ export class guardiaApi {
         console.log(treballadorJSON)
         return this.http.post("http://localhost:4000/api/guardia/getGuardiesTreballador", treballadorJSON, this.requestOptions);
     }
+
+    deactivateGuardia(guardia: Array<any>): Observable<any>{
+        const guardiaJSON = JSON.stringify(guardia);
+        console.log("e");
+        console.log(guardia);
+        return this.http.post("http://localhost:4000/api/guardia/deactivateGuardia", guardiaJSON, this.requestOptions);
+    }
+
+    // const deactivateGuardia = (async (req, res) => {
+    //     try {
+    //         await db.execute(
+    //             'UPDATE Guardia SET actiu = false AND usuariMOD = ? WHERE idGuardia = ?',
+    //             [req.body.usuariMOD, req.body.idGuardia]
+    //         )
+    //         res.status(201).json({ missatge: "Guardia desactivada" })
+    //     } catch (error) {
+    //         res.status(400).json({ missatge: error })
+    //     }
+    // })
+
 
     private createHeader(){
         const token: string = "6470ce68e532a37494b757bf58a8b5bb3763f4517b78fdbb4b7db25128612ff7";
