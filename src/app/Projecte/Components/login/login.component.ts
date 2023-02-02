@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule,  FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Login } from '../../Model/api/entities/login/Login';
+import { LoginWebService } from '../../Model/api/loginWebService';
+import { LoginDAO } from '../../Model/api/persistence/impl/webStorage/daos/login/LoginDAO';
 
 @Component({
   selector: 'app-login',
@@ -7,33 +11,61 @@ import { FormBuilder, ReactiveFormsModule,  FormGroup, FormControl, Validators }
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  hide:boolean = true;
+  usuari?:string;
+  password?:string;
+  errorDades:boolean=false;
   loginForm!: FormGroup;
-  ngOnInit() {
 
+  constructor(private loginWebService: LoginWebService,private router:Router) {
+
+  }
+  ngOnInit() {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.email, Validators.required]),
-      contrasenya: new FormControl('', [Validators.required])
+      usuari: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
     });
   }
 
 
-  onSubmitLogin() {
-    console.log("hola");
-    if (this.loginForm.controls['email'].valid) {
-      if (this.loginForm.controls['contrasenya'].valid) {
-        this.comprovar();
-      } else {
-        window.alert("La contrasenya es incorrecte");
-      }
-    } else {
-      window.alert("El correu es incorrecte");
-    }
-  }
-  comprovar(){
-    console.log("hola");
+  autentificar() {
+    var login:Login = Login.inicialitzar(this.usuari!,this.password!);
+
+    this.loginWebService.autentificar(login).subscribe(token => {
+       if (token!=null) {
+          LoginDAO.save("accessToken",(<any>token)['accessToken']);
+          LoginDAO.save("refreshToken", (<any>token)['refreshToken']);
+          this.errorDades = false;
+          this.router.navigate(['/calendar']);
+       }
+       else {
+        this.errorDades = true;
+        this.clearData();
+       }
+    });
   }
 
+
+  clearError() {
+    this.errorDades = false;
+  }
+  clearData() {
+    this.usuari = ""; this.password = "";
+  }
+
+  verificarToken() {
+    this.loginWebService.verificarToken().subscribe(
+      {
+        next: (v) => {
+            console.log(v)
+            LoginDAO.save("refreshToken",JSON.stringify(JSON.parse(v['refreshToken'])));
+            console.log("VERIFICAR TOKEN LOGIN")
+            console.log(JSON.stringify(JSON.parse(v['refreshToken'])))
+        },
+        error: (e) => console.error("Error en l'execució"),
+      }
+    );
+  }
 
 
 }

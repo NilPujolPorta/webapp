@@ -8,15 +8,20 @@ import { LoginComponent } from './Projecte/Components/login/login.component';
 import { SignupComponent } from './Projecte/Components/signup/signup.component';
 import { ListComponent } from './Projecte/Components/list/list.component';
 import { ListDeleteComponent } from './Projecte/Components/list-delete/list-delete.component';
-import { MatTableModule } from '@angular/material/table'
 import { AdminCreateUserComponent } from './Projecte/Components/admin-create-user/admin-create-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CalendarComponent } from './Projecte/Components/calendar/calendar.component';
 import { CheckboxModule } from 'primeng/checkbox';
-import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-nav-bar.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatTableModule} from '@angular/material/table';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +34,7 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
     AdminCreateUserComponent,
     ListDeleteComponent
   ],
-  imports: [ 
+  imports: [
     MbscModule,
     BrowserModule,
     AppRoutingModule,
@@ -39,9 +44,12 @@ import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-na
     CheckboxModule,
     CalendarModule,
     BrowserAnimationsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    NgbModule,
     MatTableModule
   ],
-  providers: [],
+  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,7 @@
-    <div class="body">
-    <router-outlet></router-outlet>
-    <app-list></app-list>
-    <!-- <app-list-delete></app-list-delete> -->
-    <!-- <app-admin-create-user></app-admin-create-user>   -->
-    </div>
-    <div class="footer">
-    </div>
-        <app-bottom-nav-bar *ngIf="!autenticat"></app-bottom-nav-bar>
+<div *ngIf="!autenticat">
+  <app-login></app-login>
+</div>
+<router-outlet *ngIf="autenticat"></router-outlet>
+<app-bottom-nav-bar *ngIf="autenticat"></app-bottom-nav-bar>
 
 
