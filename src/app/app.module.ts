@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './Projecte/Components/login/login.component';
 import { SignupComponent } from './Projecte/Components/signup/signup.component';
 import { ListComponent } from './Projecte/Components/list/list.component';
+import { ListDeleteComponent } from './Projecte/Components/list-delete/list-delete.component';
 import { AdminCreateUserComponent } from './Projecte/Components/admin-create-user/admin-create-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -30,7 +31,8 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
     CalendarComponent,
     BottomNavBarComponent,
     ListComponent,
-    AdminCreateUserComponent
+    AdminCreateUserComponent,
+    ListDeleteComponent
   ],
   imports: [
     MbscModule,
