@@ -66,14 +66,19 @@ export class ListComponent implements OnInit {
 
   getGuardiesTreballador(treballador: string) {
     //this.subscriptions.push(
+      console.log("getGuardies")
+      console.log("1")
       this.httpClient.getGuardiesTreballador(treballador).pipe(
         take(1),
         catchError((err: any) => {
           return throwError(() => new Error("Error al agafar guardia"))
         })
       ).subscribe({
+        
         next: (x) => {
+          console.log("2")
           this.guardies = x;
+          console.log("this.guardies")
           console.log(this.guardies)
           this.data = this.guardies
         },

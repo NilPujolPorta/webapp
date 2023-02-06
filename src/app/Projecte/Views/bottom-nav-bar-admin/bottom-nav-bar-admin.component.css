@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap");
+
+:root {
+  --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+html {
+  color: #56688a;
+  background: #fafafa;
+}
+
+.material-symbols-outlined {
+  font-size: 24px;
+  font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 40;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  background: #ffffff;
+  filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.1));
+  display: flex;
+  justify-content: center;
+}
+
+.bottom-bar__list {
+  flex-basis: 32rem;
+  display: flex;
+  position: relative;
+  cursor: pointer;
+}
+
+.bottom-bar__active-indicator {
+  width: 20%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  transform: translate(0, -0.5rem);
+  pointer-events: none;
+  transition: transform 0.3s var(--easing);
+}
+
+.bottom-bar__active-indicator::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #d9dbf1;
+  border-radius: 1.5rem;
+  border: 4px solid white;
+}
+
+.bottom-bar__active-indicator.active--1::before {
+  animation: Stretch 0.18s linear;
+}
+.bottom-bar__active-indicator.active--2::before {
+  animation: Stretch2 0.2s linear;
+}
+.bottom-bar__active-indicator.active--3::before {
+  animation: Stretch3 0.2s linear;
+}
+.bottom-bar__active-indicator.active--4::before {
+  animation: Stretch4 0.225s linear;
+}
+
+.bottom-bar__active-indicator.active-left::before {
+  transform-origin: center right;
+}
+
+.bottom-bar__active-indicator.active-right::before {
+  transform-origin: center left;
+}
+
+.bottom-bar__link {
+  flex: 1;
+  font-size: 0.675rem;
+  font-weight: 300;
+  letter-spacing: 0.025rem;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  z-index: 2;
+}
+
+.bottom-bar__link.selected {
+  font-weight: 500;
+  letter-spacing: 0.0125rem;
+  color: #1e2133;
+}
+
+.bottom-bar__link.selected .material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;
+  font-size: 24px;
+  transform: translateY(-0.25rem);
+  transition: color 0.2s 0.1s ease-in-out, transform 0.3s var(--easing),
+    font-variation-settings 0.2s 0.1s ease-in-out;
+}
+
+@keyframes Stretch {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(2.25, 0.65);
+    border-radius: 1.25rem;
+  }
+  0% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes Stretch2 {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(2.75, 0.625);
+    border-radius: 1.125rem;
+  }
+  0% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes Stretch3 {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(3.5, 0.6);
+    border-radius: 1.125rem;
+  }
+  0% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes Stretch4 {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(4.5, 0.55);
+    border-radius: 1.125rem;
+  }
+  0% {
+    transform: scale(1, 1);
+  }
+
+}

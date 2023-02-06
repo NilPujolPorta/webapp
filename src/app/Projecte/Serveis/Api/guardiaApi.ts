@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { obtainHeaderWithTokens } from "../../Model/api/utils/obtainHeaderWithToken";
 
 //Aquest objecte es podrà utilitzar a qualsevol lloc gràcies al "root"
 @Injectable({
@@ -16,26 +17,25 @@ export class guardiaApi {
     createGuardia(guardia: Array<any>): Observable<any>{
         const guardiaJSON = JSON.stringify(guardia);
 
-        return this.http.post("http://localhost:4000/api/guardia/createGuardia", guardiaJSON, this.requestOptions);
+        return this.http.post("http://localhost:4000/api/guardia/createGuardia", guardiaJSON, obtainHeaderWithTokens.Instance);
     }
 
     getGuardies():Observable<any>{
         console.log("aaaaa")
-        return this.http.get("http://localhost:4000/api/guardia/getGuardies", this.requestOptions);
+        return this.http.get("http://localhost:4000/api/guardia/getGuardies", obtainHeaderWithTokens.Instance);
     }
     
     getGuardiesTreballador(treballador: string):Observable<any>{
+        console.log(treballador)
         let arrayTreballador = {usuari: treballador};
-        const treballadorJSON = arrayTreballador
-        console.log(treballadorJSON)
-        return this.http.post("http://localhost:4000/api/guardia/getGuardiesTreballador", treballadorJSON, this.requestOptions);
+        return this.http.post("http://localhost:4000/api/guardia/getGuardiesTreballador", arrayTreballador, obtainHeaderWithTokens.Instance);
     }
 
     deactivateGuardia(guardia: Array<any>): Observable<any>{
         const guardiaJSON = JSON.stringify(guardia);
         console.log("e");
         console.log(guardia);
-        return this.http.post("http://localhost:4000/api/guardia/deactivateGuardia", guardiaJSON, this.requestOptions);
+        return this.http.post("http://localhost:4000/api/guardia/deactivateGuardia", guardiaJSON, {headers:obtainHeaderWithTokens.Instance});
     }
 
     // const deactivateGuardia = (async (req, res) => {

@@ -1,6 +1,10 @@
 import { HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { LoginDAO } from "../persistence/impl/webStorage/daos/login/LoginDAO";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class obtainHeaderWithTokens
 {
     private static headerDict : any;
@@ -8,12 +12,13 @@ export class obtainHeaderWithTokens
     private constructor()
     {
       let token:string = LoginDAO.get("accessToken");// Token vàlid i vigent
+      console.log("singletone -> " + token)
 
       obtainHeaderWithTokens.headerDict = {
-        'Access-Control-Allow-Origin':'http://localhost:4200',
-        'Content-Type':  'application/x-www-form-urlencoded; charset=UTF-8;application/json',
-        'Accept': 'application/json, text/plain, /',
-        'Access-Control-Allow-Headers': 'Origin,Content-Type,Accept,Authorization',
+        "Access-Control-Allow-Origin":"*",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Access-Control-Allow-Headers":"Origin, Content-Type, Accept, Authorization",
         'Authorization': `Bearer ${token}`,
       };
 

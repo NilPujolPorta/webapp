@@ -5,13 +5,16 @@ import { CalendarComponent } from './Projecte/Components/calendar/calendar.compo
 import { ListComponent } from './Projecte/Components/list/list.component';
 import { LoginComponent } from './Projecte/Components/login/login.component';
 import { SignupComponent } from './Projecte/Components/signup/signup.component';
+import { ListDeleteComponent } from './Projecte/Components/list-delete/list-delete.component';
+
 
 const routes: Routes = [
   { path: 'calendar', component: CalendarComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignupComponent },
   { path: 'registerAdmin', component: AdminCreateUserComponent },
-  { path: 'listJourney', component: ListComponent }
+  { path: 'listJourney', component: ListComponent },
+  { path: 'listDelete', component: ListDeleteComponent }
 ];
 
 @NgModule({
