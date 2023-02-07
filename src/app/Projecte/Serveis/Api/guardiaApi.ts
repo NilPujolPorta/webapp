@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { LoginDAO } from "../../Model/api/persistence/impl/webStorage/daos/login/LoginDAO";
+import { obtainHeaderWithTokens } from "../../Model/api/utils/obtainHeaderWithToken";
+import { tokenService } from "../token/tokenService";
 
 //Aquest objecte es podrà utilitzar a qualsevol lloc gràcies al "root"
 @Injectable({
