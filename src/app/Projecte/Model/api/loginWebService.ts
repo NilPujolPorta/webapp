@@ -26,7 +26,6 @@ export class LoginWebService {
         console.log("Autentificar: "+JSON.stringify(login));
         const headers = new HttpHeaders()
           .set('Content-Type', 'application/json');
-
         return this.http.post(`${environment.urlApi}treballador/login`, JSON.stringify(login), {
           headers: headers
         })

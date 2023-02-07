@@ -24,9 +24,9 @@
     CalendarView,
   } from 'angular-calendar';
   import { EventColor } from 'calendar-utils';
-import { GuardiasService } from '../../Model/api/guardsService';
 import { Guardia } from '../../Model/api/entities/guardia/Guardia';
 import { Guardias } from '../../Model/api/entities/guardies/guardies';
+import { guardiaApi } from '../../Serveis/Api/guardiaApi';
 
   const colors: Record<string, EventColor> = {
     red: {
@@ -128,22 +128,45 @@ import { Guardias } from '../../Model/api/entities/guardies/guardies';
 
     guardies!: Guardias;
 
-    constructor(private modal: NgbModal, private guardsService: GuardiasService) {}
+    constructor(private modal: NgbModal, private guardiaApi: guardiaApi) {}
 
     ngOnInit(): void {
       this.searchEvents();
-      this.createCalendarEvents();
+
     }
     createCalendarEvents() {
-        this.guardies.guardias.forEach(obj => {
-          this.actions.push(
+        this.guardies.getGuardias().forEach(obj => {
+          console.log(obj.data);
+          let color : string;
+          if(obj.torn == "Dia") {
+            color= "yellow";
+          } else {
+            color = "black";
+          }
+          this.events.push(
+            {
+              start: obj.data,
+              end: addDays(new Date(), 1),
+              title: obj.zona + " - "+obj.categoria,
+              color: { ...colors[color] },
+              actions: this.actions,
+              allDay: true,
+              resizable: {
+                beforeStart: true,
+                afterEnd: true,
+              },
+              draggable: true,
+            }
           )
         });
+
     }
 
     searchEvents() {
-      this.guardsService.getGuardias().subscribe(guardies => {
-        this.guardies = guardies;
+      console.log("searchelements")
+      this.guardiaApi.getGuardies().subscribe(guardies => {
+        this.guardies = new Guardias(guardies);
+        this.createCalendarEvents();
       });
     }
 

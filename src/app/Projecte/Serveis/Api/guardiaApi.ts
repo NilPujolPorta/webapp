@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { LoginDAO } from "../../Model/api/persistence/impl/webStorage/daos/login/LoginDAO";
 import { obtainHeaderWithTokens } from "../../Model/api/utils/obtainHeaderWithToken";
+import { tokenService } from "../token/tokenService";
 
 //Aquest objecte es podrà utilitzar a qualsevol lloc gràcies al "root"
 @Injectable({
@@ -10,25 +12,26 @@ import { obtainHeaderWithTokens } from "../../Model/api/utils/obtainHeaderWithTo
 
 export class guardiaApi {
     //Amb el constructor fem que la classe catFact tingui la propietat HttpClient per fer peticions HTTP
-    constructor(private http:HttpClient){}
+    constructor(private http:HttpClient, private token:tokenService){}
     requestOptions = this.createHeader();
 
 
     createGuardia(guardia: Array<any>): Observable<any>{
         const guardiaJSON = JSON.stringify(guardia);
 
-        return this.http.post("http://localhost:4000/api/guardia/createGuardia", guardiaJSON, obtainHeaderWithTokens.Instance);
+        return this.http.post("http://localhost:4000/api/guardia/createGuardia", guardiaJSON,  obtainHeaderWithTokens.Instance);
     }
 
     getGuardies():Observable<any>{
         console.log("aaaaa")
-        return this.http.get("http://localhost:4000/api/guardia/getGuardies", obtainHeaderWithTokens.Instance);
+        return this.http.post("http://localhost:4000/api/guardia/","{}", obtainHeaderWithTokens.Instance);
     }
-    
-    getGuardiesTreballador(treballador: string):Observable<any>{
-        console.log(treballador)
-        let arrayTreballador = {usuari: treballador};
-        return this.http.post("http://localhost:4000/api/guardia/getGuardiesTreballador", arrayTreballador, obtainHeaderWithTokens.Instance);
+
+    getGuardiesTreballador(treballador :string):Observable<any>{
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        const treballadorJSON = {usuari:treballador};
+        console.log(treballadorJSON)
+        return this.http.post("http://localhost:4000/api/guardia/getGuardiesTreballador", treballadorJSON, obtainHeaderWithTokens.Instance);
     }
 
     deactivateGuardia(guardia: Array<any>): Observable<any>{
@@ -59,7 +62,7 @@ export class guardiaApi {
             "Content-Type": "application/json",
             "Accept": "application/json",
             "Access-Control-Allow-Headers":"Origin, Content-Type, Accept, Authorization",
-            //"Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${LoginDAO.get("accesToken")}`
         }
 
         return {headers: new HttpHeaders(header)}

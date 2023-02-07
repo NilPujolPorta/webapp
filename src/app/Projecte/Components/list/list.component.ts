@@ -21,7 +21,7 @@ export class ListComponent implements OnInit {
 
     //this.getGuardies();
 
-    
+
 
   /*this.httpClient.getGuardies().subscribe(
     response => {
@@ -66,15 +66,13 @@ export class ListComponent implements OnInit {
 
   getGuardiesTreballador(treballador: string) {
     //this.subscriptions.push(
-      console.log("getGuardies")
-      console.log("1")
-      this.httpClient.getGuardiesTreballador(treballador).pipe(
+      this.httpClient.getGuardiesTreballador("xcanal").pipe(
         take(1),
         catchError((err: any) => {
           return throwError(() => new Error("Error al agafar guardia"))
         })
       ).subscribe({
-        
+
         next: (x) => {
           console.log("2")
           this.guardies = x;

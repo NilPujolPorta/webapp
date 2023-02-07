@@ -3,7 +3,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
 import { LoginWebService } from './Projecte/Model/api/loginWebService';
 import { LoginDAO } from './Projecte/Model/api/persistence/impl/webStorage/daos/login/LoginDAO';
-import { obtainHeaderWithTokens } from './Projecte/Model/api/utils/obtainHeaderWithToken';
+import {obtainHeaderWithTokens} from './Projecte/Model/api/utils/obtainHeaderWithToken'
 
 @Component({
   selector: 'app-root',
@@ -46,7 +46,6 @@ export class AppComponent {
           }
         }
         else {
-          console.log("Empty token")
           this.router.navigate(['/login']);
         }
 

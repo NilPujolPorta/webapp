@@ -1,4 +1,5 @@
-import { HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { createInjectableType } from "@angular/compiler";
 import { Injectable } from "@angular/core";
 import { LoginDAO } from "../persistence/impl/webStorage/daos/login/LoginDAO";
 
@@ -9,10 +10,10 @@ export class obtainHeaderWithTokens
 {
     private static headerDict : any;
     private static requestOptions: any;
-    private constructor()
+    private constructor(private http: HttpClient)
     {
       let token:string = LoginDAO.get("accessToken");// Token vàlid i vigent
-      console.log("singletone -> " + token)
+      console.log("CREATING SINGLETONE "+token)
 
       obtainHeaderWithTokens.headerDict = {
         "Access-Control-Allow-Origin":"*",
@@ -23,8 +24,8 @@ export class obtainHeaderWithTokens
       };
 
       obtainHeaderWithTokens.requestOptions = {
-        headers: new HttpHeaders(obtainHeaderWithTokens.headerDict),
-    };
+          headers: new HttpHeaders(obtainHeaderWithTokens.headerDict),
+      };
     }
 
     public static get Instance()
