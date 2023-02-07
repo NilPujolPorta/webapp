@@ -72,8 +72,11 @@ export class ListComponent implements OnInit {
           return throwError(() => new Error("Error al agafar guardia"))
         })
       ).subscribe({
+
         next: (x) => {
+          console.log("2")
           this.guardies = x;
+          console.log("this.guardies")
           console.log(this.guardies)
           this.data = this.guardies
         },

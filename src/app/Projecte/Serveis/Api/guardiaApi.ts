@@ -1,10 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { LoginDAO } from "../../Model/api/persistence/impl/webStorage/daos/login/LoginDAO";
-import { obtainHeaderWithTokens } from "../../Model/api/utils/obtainHeaderWithToken";
-import { Treballador } from "../../Model/Entitats/Implementations/Treballador/Treballador";
-import { tokenService } from "../token/tokenService";
 
 //Aquest objecte es podrà utilitzar a qualsevol lloc gràcies al "root"
 @Injectable({
@@ -39,7 +35,7 @@ export class guardiaApi {
         const guardiaJSON = JSON.stringify(guardia);
         console.log("e");
         console.log(guardia);
-        return this.http.post("http://localhost:4000/api/guardia/deactivateGuardia", guardiaJSON, this.requestOptions);
+        return this.http.post("http://localhost:4000/api/guardia/deactivateGuardia", guardiaJSON, {headers:obtainHeaderWithTokens.Instance});
     }
 
     // const deactivateGuardia = (async (req, res) => {

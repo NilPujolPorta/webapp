@@ -1,0 +1,40 @@
+<nav class="bottom-bar">
+  <ul class="bottom-bar__list">
+    <div *ngIf="btnStyle == 'selected'">
+      <div  class="bottom-bar__active-indicator.active--1"></div>
+    </div>
+
+    <li (click)="submit()" [routerLink]="['/home']" class="bottom-bar__link" [ngClass]="btnStyle">
+      <span class="material-icons-outlined">
+        home
+      </span>Home</li>
+      <div *ngIf="btnStyle2 == 'selected'">
+        <div  class="bottom-bar__active-indicator.active--1"></div>
+      </div>
+    <li (click)="submit2()" [routerLink]="['/calendar']" class="bottom-bar__link" [ngClass]="btnStyle2">
+      <span class="material-icons-outlined">
+        calendar_month
+      </span>Explore</li>
+      <div *ngIf="btnStyle3 == 'selected'">
+        <div  class="bottom-bar__active-indicator.active--1"></div>
+      </div>
+    <li (click)="submit3()" [routerLink]="['/notifications']" class="bottom-bar__link" [ngClass]="btnStyle3">
+      <span class="material-icons-outlined">
+        notifications
+      </span>Notifications</li>
+      <div *ngIf="btnStyle4 == 'selected'">
+        <div  class="bottom-bar__active-indicator.active--1"></div>
+      </div>
+    <li (click)="submit4()" [routerLink]="['/listJourney']" class="bottom-bar__link" [ngClass]="btnStyle4">
+      <span class="material-icons-outlined">
+        person
+      </span>Perfil</li>
+      <div *ngIf="btnStyle5 == 'selected'">
+        <div  class="bottom-bar__active-indicator.active--1"></div>
+      </div>
+    <li (click)="submit5()" [routerLink]="['/listDelete']" class="bottom-bar__link" [ngClass]="btnStyle5">
+      <span class="material-icons-outlined">
+        settings
+        </span>Gestionar</li>
+  </ul>
+</nav>

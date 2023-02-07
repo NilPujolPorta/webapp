@@ -15,11 +15,13 @@ import { CalendarComponent } from './Projecte/Components/calendar/calendar.compo
 import { CheckboxModule } from 'primeng/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BottomNavBarComponent } from './Projecte/Views/bottom-nav-bar/bottom-nav-bar.component';
+import { BottomNavBarAdminComponent } from './Projecte/Views/bottom-nav-bar-admin/bottom-nav-bar-admin.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatTableModule} from '@angular/material/table';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+import { obtainHeaderWithTokens } from './Projecte/Model/api/utils/obtainHeaderWithToken';
 
 
 
@@ -32,7 +34,8 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
     BottomNavBarComponent,
     ListComponent,
     AdminCreateUserComponent,
-    ListDeleteComponent
+    ListDeleteComponent,
+    BottomNavBarAdminComponent
   ],
   imports: [
     MbscModule,
@@ -48,8 +51,10 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
     NgbModule,
     MatTableModule
   ],
-  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService],
+  providers: [
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

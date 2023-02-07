@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { obtainHeaderWithTokens } from "../../Model/api/utils/obtainHeaderWithToken";
 import { Treballador } from "../../Model/Entitats/Implementations/Treballador/Treballador";
 
 //Aquest objecte es podrà utilitzar a qualsevol lloc gràcies al "root"
@@ -16,7 +17,7 @@ export class treballadorApi {
 
     createTreballador(treballador: Treballador): Observable<any>{
         const treballadorJSON = JSON.stringify(treballador);
-        return this.http.post("http://localhost:4000/api/treballador/createTreballador", treballadorJSON, this.requestOptions);
+        return this.http.post("http://localhost:4000/api/treballador/createTreballador", treballadorJSON, {headers:obtainHeaderWithTokens.Instance});
     }
 
    
@@ -24,7 +25,7 @@ export class treballadorApi {
         let arrayTreballador = {usuari: treballador};
         const treballadorJSON = arrayTreballador
         console.log(treballadorJSON)
-        return this.http.post("http://localhost:4000/api/guardia/getGuardiesTreballador", treballadorJSON, this.requestOptions);
+        return this.http.post("http://localhost:4000/api/guardia/getGuardiesTreballador", treballadorJSON, {headers:obtainHeaderWithTokens.Instance});
     }
 
     private createHeader(){
