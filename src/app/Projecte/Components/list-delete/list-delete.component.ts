@@ -21,7 +21,7 @@ export class ListDeleteComponent implements OnInit {
 
     //this.getGuardies();
 
-    
+
 
   /*this.httpClient.getGuardies().subscribe(
     response => {
@@ -67,24 +67,24 @@ export class ListDeleteComponent implements OnInit {
       })
   }
 
-  getGuardiesTreballador(treballador: string) {
-    //this.subscriptions.push(
-      this.httpClient.getGuardiesTreballador(treballador).pipe(
-        take(1),
-        catchError((err: any) => {
-          return throwError(() => new Error("Error al agafar guardia"))
-        })
-      ).subscribe({
-        next: (x) => {
-          this.guardies = x;
-          this.data = this.guardies
-        },
-        error: (err: any) => {
-          console.log(err.message)
-        },
-        complete: () => {},
-      })
-  }
+  // getGuardiesTreballador(treballador: string) {
+  //   //this.subscriptions.push(
+  //     this.httpClient.getGuardiesTreballador(treballador).pipe(
+  //       take(1),
+  //       catchError((err: any) => {
+  //         return throwError(() => new Error("Error al agafar guardia"))
+  //       })
+  //     ).subscribe({
+  //       next: (x) => {
+  //         this.guardies = x;
+  //         this.data = this.guardies
+  //       },
+  //       error: (err: any) => {
+  //         console.log(err.message)
+  //       },
+  //       complete: () => {},
+  //     })
+  // }
 
   delete(treballador: Array<any>){
     this.httpClient.deactivateGuardia(treballador).pipe(

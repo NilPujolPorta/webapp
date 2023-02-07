@@ -1,25 +1,31 @@
-import { HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { createInjectableType } from "@angular/compiler";
+import { Injectable } from "@angular/core";
 import { LoginDAO } from "../persistence/impl/webStorage/daos/login/LoginDAO";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class obtainHeaderWithTokens
 {
     private static headerDict : any;
     private static requestOptions: any;
-    private constructor()
+    private constructor(private http: HttpClient)
     {
       let token:string = LoginDAO.get("accessToken");// Token vàlid i vigent
+      console.log("CREATING SINGLETONE "+token)
 
       obtainHeaderWithTokens.headerDict = {
-        'Access-Control-Allow-Origin':'http://localhost:4200',
-        'Content-Type':  'application/x-www-form-urlencoded; charset=UTF-8;application/json',
-        'Accept': 'application/json, text/plain, /',
-        'Access-Control-Allow-Headers': 'Origin,Content-Type,Accept,Authorization',
+        "Access-Control-Allow-Origin":"*",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Access-Control-Allow-Headers":"Origin, Content-Type, Accept, Authorization",
         'Authorization': `Bearer ${token}`,
       };
 
       obtainHeaderWithTokens.requestOptions = {
-        headers: new HttpHeaders(obtainHeaderWithTokens.headerDict),
-    };
+          headers: new HttpHeaders(obtainHeaderWithTokens.headerDict),
+      };
     }
 
     public static get Instance()

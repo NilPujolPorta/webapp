@@ -3,6 +3,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
 import { LoginWebService } from './Projecte/Model/api/loginWebService';
 import { LoginDAO } from './Projecte/Model/api/persistence/impl/webStorage/daos/login/LoginDAO';
+import {obtainHeaderWithTokens} from './Projecte/Model/api/utils/obtainHeaderWithToken'
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ export class AppComponent {
   currentRoute:string = "";
   rol?:string;
 
-  constructor(private loginWebService: LoginWebService, private router: Router) {
+  constructor(private loginWebService: LoginWebService, private router: Router, public obtainHeaderWithTokens: obtainHeaderWithTokens) {
     this.currentRoute = "";
     this.router.events.subscribe(e => {
       if (e instanceof NavigationStart) if (e.url != "/login") {
@@ -45,7 +46,6 @@ export class AppComponent {
           }
         }
         else {
-          console.log("Empty token")
           this.router.navigate(['/login']);
         }
 

@@ -1,9 +1,16 @@
 import { Guardia } from "../guardia/Guardia";
 
 export class Guardias {
-  guardias: Guardia[];
+  public guardies: Guardia[];
+
+  public getGuardias(): Guardia[] {
+    return this.guardies;
+  }
+  public setGuardias(value: Guardia[]) {
+    this.guardies = value;
+  }
 
   constructor(guardias: Guardia[]) {
-    this.guardias = guardias;
+    this.guardies = guardias;
   }
 }
