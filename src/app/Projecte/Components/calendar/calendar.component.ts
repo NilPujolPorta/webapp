@@ -239,4 +239,8 @@ export class CalendarComponent implements OnInit {
     closeOpenMonthViewDay() {
         this.activeDayIsOpen = false;
     }
+
+    apuntar(){
+        
+    }
 }
