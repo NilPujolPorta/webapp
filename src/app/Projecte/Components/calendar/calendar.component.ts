@@ -27,6 +27,10 @@ import { EventColor } from 'calendar-utils';
 import { Guardia } from '../../Model/api/entities/guardia/Guardia';
 import { Guardias } from '../../Model/api/entities/guardies/guardies';
 import { guardiaApi } from '../../Serveis/Api/guardiaApi';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+registerLocaleData(localeEs);
 
 const colors: Record<string, EventColor> = {
     red: {
@@ -84,44 +88,44 @@ export class CalendarComponent implements OnInit {
     refresh = new Subject<void>();
 
     events: CalendarEvent[] = [
-        {
-            start: subDays(startOfDay(new Date()), 1),
-            end: addDays(new Date(), 1),
-            title: 'A 3 day event',
-            color: { ...colors['red'] },
-            actions: this.actions,
-            allDay: true,
-            resizable: {
-                beforeStart: true,
-                afterEnd: true,
-            },
-            draggable: true,
-        },
-        {
-            start: startOfDay(new Date()),
-            title: 'An event with no end date',
-            color: { ...colors['yellow'] },
-            actions: this.actions,
-        },
-        {
-            start: subDays(endOfMonth(new Date()), 3),
-            end: addDays(endOfMonth(new Date()), 3),
-            title: 'A long event that spans 2 months',
-            color: { ...colors['blue'] },
-            allDay: true,
-        },
-        {
-            start: addHours(startOfDay(new Date()), 2),
-            end: addHours(new Date(), 2),
-            title: 'A draggable and resizable event',
-            color: { ...colors['yellow'] },
-            actions: this.actions,
-            resizable: {
-                beforeStart: true,
-                afterEnd: true,
-            },
-            draggable: true,
-        },
+        // {
+        //     start: subDays(startOfDay(new Date()), 1),
+        //     end: addDays(new Date(), 1),
+        //     title: 'A 3 day event',
+        //     color: { ...colors['red'] },
+        //     actions: this.actions,
+        //     allDay: true,
+        //     resizable: {
+        //         beforeStart: true,
+        //         afterEnd: true,
+        //     },
+        //     draggable: true,
+        // },
+        // {
+        //     start: startOfDay(new Date()),
+        //     title: 'An event with no end date',
+        //     color: { ...colors['yellow'] },
+        //     actions: this.actions,
+        // },
+        // {
+        //     start: subDays(endOfMonth(new Date()), 3),
+        //     end: addDays(endOfMonth(new Date()), 3),
+        //     title: 'A long event that spans 2 months',
+        //     color: { ...colors['blue'] },
+        //     allDay: true,
+        // },
+        // {
+        //     start: addHours(startOfDay(new Date()), 2),
+        //     end: addHours(new Date(), 2),
+        //     title: 'A draggable and resizable event',
+        //     color: { ...colors['yellow'] },
+        //     actions: this.actions,
+        //     resizable: {
+        //         beforeStart: true,
+        //         afterEnd: true,
+        //     },
+        //     draggable: true,
+        // },
     ];
 
     activeDayIsOpen: boolean = true;
@@ -147,7 +151,7 @@ export class CalendarComponent implements OnInit {
                 {
                     start: data,
                     end: data,
-                    title: obj.zona + " - " + obj.categoria,
+                    title: obj.zona + " - " + obj.categoria + ": " + obj.torn,
                     color: { ...colors[color] },
                     actions: this.actions,
                     allDay: true,

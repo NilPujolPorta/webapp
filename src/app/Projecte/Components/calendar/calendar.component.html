@@ -8,14 +8,14 @@
         [(viewDate)]="viewDate"
         (viewDateChange)="closeOpenMonthViewDay()"
       >
-        Previous
+        Previ
       </div>
       <div
         class="btn btn-outline-secondary"
         mwlCalendarToday
         [(viewDate)]="viewDate"
       >
-        Today
+        Avui
       </div>
       <div
         class="btn btn-primary"
@@ -24,12 +24,12 @@
         [(viewDate)]="viewDate"
         (viewDateChange)="closeOpenMonthViewDay()"
       >
-        Next
+        Següent
       </div>
     </div>
   </div>
   <div class="col-md-4">
-    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'Es' }}</h3>
   </div>
   <div class="col-md-4">
     <div class="btn-group">
@@ -38,21 +38,21 @@
         (click)="setView(CalendarView.Month)"
         [class.active]="view === CalendarView.Month"
       >
-        Month
+        Mes
       </div>
       <div
         class="btn btn-primary"
         (click)="setView(CalendarView.Week)"
         [class.active]="view === CalendarView.Week"
       >
-        Week
+        Setmana
       </div>
       <div
         class="btn btn-primary"
         (click)="setView(CalendarView.Day)"
         [class.active]="view === CalendarView.Day"
       >
-        Day
+        Dia
       </div>
     </div>
   </div>
@@ -95,9 +95,9 @@
 <br /><br /><br />
 
 <h3>
-  Edit events
+  Editar events
   <button class="btn btn-primary float-end" (click)="addEvent()">
-    Add new
+    Afegir event
   </button>
   <div class="clearfix"></div>
 </h3>
@@ -106,12 +106,8 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Primary color</th>
-        <th>Secondary + text color</th>
-        <th>Starts at</th>
-        <th>Ends at</th>
-        <th>Remove</th>
+        <th>Títol</th>
+        <th>Dia</th>
       </tr>
     </thead>
 
@@ -125,7 +121,7 @@
             (keyup)="refresh.next()"
           />
         </td>
-        <td>
+        <!--<td>
           <input
             type="color"
             [(ngModel)]="event.color!.primary"
@@ -144,7 +140,7 @@
             (ngModelChange)="event.color!.secondaryText = $event"
             (change)="refresh.next()"
           />
-        </td>
+        </td>-->
         <td>
           <input
             class="form-control"
@@ -157,7 +153,7 @@
             placeholder="Not set"
           />
         </td>
-        <td>
+        <!--<td>
           <input
             class="form-control"
             type="text"
@@ -168,10 +164,10 @@
             altFormat="F j, Y H:i"
             placeholder="Not set"
           />
-        </td>
+        </td>-->
         <td>
           <button class="btn btn-danger" (click)="deleteEvent(event)">
-            Delete
+            Borrar
           </button>
         </td>
       </tr>
@@ -181,19 +177,19 @@
 
 <ng-template #modalContent let-close="close">
   <div class="modal-header">
-    <h5 class="modal-title">Event action occurred</h5>
+    <h5 class="modal-title">Informació de la guàrdia</h5>
     <button type="button" class="close" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <div>
+    <!--<div>
       Action:
       <pre>{{ modalData?.action }}</pre>
-    </div>
+    </div>-->
     <div>
-      Event:
-      <pre>{{ modalData?.event | json }}</pre>
+      <pre> {{ modalData?.event?.start?.toLocaleDateString() }}</pre>
+      <pre> {{ modalData?.event?.title }}</pre>
     </div>
   </div>
   <div class="modal-footer">
