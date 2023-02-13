@@ -13,7 +13,7 @@ export class ListComponent implements OnInit {
   error!: string;
   subscriptions!: Subscription[];
   data!: Array<any>;
-  displayedColumns = ['data', 'torn', 'categoria', 'zona', 'estat'];
+  displayedColumns = ['data', 'torn', 'categoria', 'zona', 'estat', 'boto'];
 
   constructor(private httpClient: guardiaApi) {
     //this.guardia = new Guardia();
@@ -91,6 +91,15 @@ export class ListComponent implements OnInit {
     this.subscriptions.forEach((s, index) => {
       console.log(index + " - " + s.closed);
     }
+    )
+  }
+
+  desapuntar(idGuardia: string){
+    let usuari: string = localStorage.getItem("usuari")!
+    this.httpClient.desapuntarTreballador(usuari, idGuardia).subscribe(
+      response => {
+        console.log(response);
+      }
     )
   }
 

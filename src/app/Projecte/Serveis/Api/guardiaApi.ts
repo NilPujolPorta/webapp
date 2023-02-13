@@ -73,4 +73,9 @@ export class guardiaApi {
         return this.http.post("http://localhost:4000/api/treballadorsApuntats/apuntarTreballador", treballadorJSON, obtainHeaderWithTokens.Instance);
     }
 
+    desapuntarTreballador(treballador: string|null, idGuardia: string|undefined): Observable<any>{
+        const treballadorJSON = {usuari: treballador?.toString(), idGuardia: idGuardia?.toString()};
+        return this.http.post("http://localhost:4000/api/treballadorsApuntats/desapuntarTreballador", treballadorJSON, obtainHeaderWithTokens.Instance);
+    }
+
 }
