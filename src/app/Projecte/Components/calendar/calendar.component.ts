@@ -138,7 +138,6 @@ export class CalendarComponent implements OnInit {
 
     ngOnInit(): void {
         this.searchEvents();
-        console.log(this.rol)
     }
     createCalendarEvents() {
         this.guardies.getGuardias().forEach(obj => {

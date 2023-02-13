@@ -32,9 +32,6 @@ export class ListComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getGuardiesTreballador(localStorage.getItem("usuari")!)
-    console.log("--------------")
-    console.log(this.guardies)
-    console.log("--------------")
   }
 
   ngOnDestroy(): void {
@@ -74,10 +71,7 @@ export class ListComponent implements OnInit {
       ).subscribe({
 
         next: (x) => {
-          console.log("2")
           this.guardies = x;
-          console.log("this.guardies")
-          console.log(this.guardies)
           this.data = this.guardies
         },
         error: (err: any) => {

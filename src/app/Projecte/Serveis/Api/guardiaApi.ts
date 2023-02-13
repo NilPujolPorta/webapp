@@ -23,12 +23,10 @@ export class guardiaApi {
     }
 
     getGuardies():Observable<any>{
-        console.log("aaaaa")
         return this.http.post("http://localhost:4000/api/guardia/","{}", obtainHeaderWithTokens.Instance);
     }
 
     getGuardiesTreballador(treballador :string):Observable<any>{
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa")
         const treballadorJSON = {usuari: treballador};
         console.log(treballadorJSON)
         return this.http.post("http://localhost:4000/api/guardia/getGuardiesTreballador", treballadorJSON, obtainHeaderWithTokens.Instance);

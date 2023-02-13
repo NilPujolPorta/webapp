@@ -33,9 +33,6 @@ export class ListDeleteComponent implements OnInit {
   ngOnInit(): void {
     // this.getGuardiesTreballador("admin")
     this.getGuardies()
-    console.log("--------------")
-    console.log(this.guardies)
-    console.log("--------------")
   }
 
   ngOnDestroy(): void {
@@ -56,7 +53,6 @@ export class ListDeleteComponent implements OnInit {
         })
       ).subscribe({
         next: (x) => {
-          console.log(x);
           this.guardies = x;
           this.data = this.guardies;
         },
