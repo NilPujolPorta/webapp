@@ -15,7 +15,7 @@ import {
     isSameMonth,
     addHours,
 } from 'date-fns';
-import { Subject } from 'rxjs';
+import { catchError, Subject, take, throwError } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
     CalendarEvent,
@@ -29,6 +29,7 @@ import { Guardias } from '../../Model/api/entities/guardies/guardies';
 import { guardiaApi } from '../../Serveis/Api/guardiaApi';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { Treballador } from '../../Model/Entitats/Implementations/Treballador/Treballador';
 
 registerLocaleData(localeEs);
 
@@ -131,12 +132,13 @@ export class CalendarComponent implements OnInit {
     activeDayIsOpen: boolean = true;
 
     guardies!: Guardias;
+    rol!:string;
 
     constructor(private modal: NgbModal, private guardiaApi: guardiaApi) { }
 
     ngOnInit(): void {
         this.searchEvents();
-
+        console.log(this.rol)
     }
     createCalendarEvents() {
         this.guardies.getGuardias().forEach(obj => {
@@ -240,13 +242,42 @@ export class CalendarComponent implements OnInit {
         this.activeDayIsOpen = false;
     }
 
-    apuntar(titol: string|undefined) {
+    apuntar(titol: string | undefined) {
         let usuari: string = localStorage.getItem("usuari")!
-        let idGuardia: string|undefined = titol?.split(" - ")[0];
+        let idGuardia: string | undefined = titol?.split(" - ")[0];
         console.log(usuari);
         console.log(idGuardia);
         this.guardiaApi.apuntarTreballador(usuari, idGuardia).subscribe(missatge => {
             console.log(missatge);
         });
+    }
+
+    getRol() {
+        let usuari: string = localStorage.getItem("usuari")!
+        let rol = "";
+        let treballador;
+        this.guardiaApi.getTreballador(usuari).pipe(
+            take(1),
+            catchError((err: any) => {
+                return throwError(() => new Error("Error al agafar guardia"))
+            })
+        ).subscribe({
+
+            next: (x) => {
+                treballador = JSON.stringify(x);
+                treballador = JSON.parse(treballador);
+                rol = treballador.rol;
+            },
+            error: (err: any) => {
+                console.log(err.message)
+            },
+            complete: () => { },
+        })
+        return rol;
+    }
+
+    esAdmin() {
+        let rol = this.getRol();
+        return rol == "admin";
     }
 }
