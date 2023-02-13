@@ -34,11 +34,10 @@ export class guardiaApi {
         return this.http.post("http://localhost:4000/api/guardia/getGuardiesTreballador", treballadorJSON, obtainHeaderWithTokens.Instance);
     }
 
-    deactivateGuardia(guardia: Array<any>): Observable<any>{
-        const guardiaJSON = JSON.stringify(guardia);
-        console.log("e");
-        console.log(guardia);
-        return this.http.post("http://localhost:4000/api/guardia/deactivateGuardia", guardiaJSON, {headers:obtainHeaderWithTokens.Instance});
+    deactivateGuardia(idGuardia: string|undefined, usuariMOD: string): Observable<any>{
+        const guardiaJSON = {idGuardia: idGuardia, usuariMOD: usuariMOD};
+        console.log(guardiaJSON)
+        return this.http.post("http://localhost:4000/api/guardia/deactivateGuardia", guardiaJSON, obtainHeaderWithTokens.Instance);
     }
 
     // const deactivateGuardia = (async (req, res) => {

@@ -3,7 +3,7 @@
   
     <ng-container matColumnDef="data">
       <th mat-header-cell *matHeaderCellDef> Dia </th>
-      <td mat-cell *matCellDef="let element"> {{element.data}} </td>
+      <td mat-cell *matCellDef="let element"> {{formatData(element.data)}} </td>
     </ng-container>
   
     <ng-container matColumnDef="torn">
@@ -21,14 +21,9 @@
       <td mat-cell *matCellDef="let element"> {{element.zona}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="estat">
-      <th mat-header-cell *matHeaderCellDef> Estat </th>
-      <td mat-cell *matCellDef="let element"> {{element.estat}} </td>
-    </ng-container>
-
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-      <td mat-cell *matCellDef="let element"><button (click)="delete(element)">X</button></td>
+      <td mat-cell *matCellDef="let element"><button (click)="delete(element.idGuardia)">X</button></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

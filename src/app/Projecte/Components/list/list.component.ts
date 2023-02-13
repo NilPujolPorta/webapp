@@ -101,6 +101,12 @@ export class ListComponent implements OnInit {
         console.log(response);
       }
     )
+    window.location.reload();
+  }
+
+  formatData(data: string) {
+    let dataFormatada = new Date(data).toLocaleDateString();
+    return dataFormatada;
   }
 
 }

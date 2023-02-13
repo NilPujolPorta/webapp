@@ -13,7 +13,7 @@ export class ListDeleteComponent implements OnInit {
   error!: string;
   subscriptions!: Subscription[];
   data!: Array<any>;
-  displayedColumns = ['data', 'torn', 'categoria', 'zona', 'estat', 'delete'];
+  displayedColumns = ['data', 'torn', 'categoria', 'zona', 'delete'];
 
   constructor(private httpClient: guardiaApi) {
     //this.guardia = new Guardia();
@@ -86,14 +86,12 @@ export class ListDeleteComponent implements OnInit {
   //     })
   // }
 
-  delete(treballador: Array<any>){
-    this.httpClient.deactivateGuardia(treballador).pipe(
-      take(1),
-      catchError((err: any) => {
-        return throwError(() => new Error("Error al eliminar guardia"))
-      })
-    )
-    console.log("hola");
+  delete(idGuardia: string|undefined) {
+    let usuari = localStorage.getItem("usuari")!;
+    this.httpClient.deactivateGuardia(idGuardia, usuari).subscribe(missatge => {
+      console.log(missatge);
+  });
+  window.location.reload();
   }
 
 
@@ -104,6 +102,11 @@ export class ListDeleteComponent implements OnInit {
       console.log(index + " - " + s.closed);
     }
     )
+  }
+
+  formatData(data: string) {
+    let dataFormatada = new Date(data).toLocaleDateString();
+    return dataFormatada;
   }
 
 }
