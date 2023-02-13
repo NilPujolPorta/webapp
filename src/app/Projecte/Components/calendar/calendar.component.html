@@ -102,7 +102,7 @@
   <div class="clearfix"></div>
 </h3>
 
-<div class="table-responsive" *ngIf="this.esAdmin()">
+<div class="table-responsive">
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -188,8 +188,8 @@
       <pre>{{ modalData?.action }}</pre>
     </div>-->
     <div>
-      <pre> {{ modalData?.event?.start?.toLocaleDateString() }}</pre>
-      <pre> {{ modalData?.event?.title }}</pre>
+      <pre style="font-size: 25px;"> {{ modalData?.event?.start?.toLocaleDateString() }}</pre>
+      <pre style="font-size: 25px;"> {{ modalData?.event?.title?.substring(6) }}</pre>
     </div>
   </div>
   <div class="modal-footer">
