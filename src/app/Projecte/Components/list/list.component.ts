@@ -31,7 +31,7 @@ export class ListComponent implements OnInit {
     });*/
   }
   ngOnInit(): void {
-    this.getGuardiesTreballador("admin")
+    this.getGuardiesTreballador(localStorage.getItem("usuari")!)
     console.log("--------------")
     console.log(this.guardies)
     console.log("--------------")
@@ -66,7 +66,7 @@ export class ListComponent implements OnInit {
 
   getGuardiesTreballador(treballador: string) {
     //this.subscriptions.push(
-      this.httpClient.getGuardiesTreballador("xcanal").pipe(
+      this.httpClient.getGuardiesTreballador(treballador).pipe(
         take(1),
         catchError((err: any) => {
           return throwError(() => new Error("Error al agafar guardia"))

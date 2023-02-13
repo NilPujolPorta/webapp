@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
 
   autentificar() {
     var login:Login = Login.inicialitzar(this.usuari!,this.password!);
+    localStorage.setItem("usuari",this.usuari!);
+    console.log(localStorage.getItem("usuari")!)
 
     this.loginWebService.autentificar(login).subscribe(token => {
        if (token!=null) {

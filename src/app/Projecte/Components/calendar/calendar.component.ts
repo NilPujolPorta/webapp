@@ -151,7 +151,7 @@ export class CalendarComponent implements OnInit {
                 {
                     start: data,
                     end: data,
-                    title: obj.zona + " - " + obj.categoria + ": " + obj.torn,
+                    title: obj.idGuardia + " - " + obj.zona + " - " + obj.categoria + ": " + obj.torn,
                     color: { ...colors[color] },
                     actions: this.actions,
                     allDay: true,
@@ -240,7 +240,13 @@ export class CalendarComponent implements OnInit {
         this.activeDayIsOpen = false;
     }
 
-    apuntar(){
-        
+    apuntar(titol: string|undefined) {
+        let usuari: string = localStorage.getItem("usuari")!
+        let idGuardia: string|undefined = titol?.split(" - ")[0];
+        console.log(usuari);
+        console.log(idGuardia);
+        this.guardiaApi.apuntarTreballador(usuari, idGuardia).subscribe(missatge => {
+            console.log(missatge);
+        });
     }
 }

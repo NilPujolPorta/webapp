@@ -29,7 +29,7 @@ export class guardiaApi {
 
     getGuardiesTreballador(treballador :string):Observable<any>{
         console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa")
-        const treballadorJSON = {usuari:treballador};
+        const treballadorJSON = {usuari: treballador};
         console.log(treballadorJSON)
         return this.http.post("http://localhost:4000/api/guardia/getGuardiesTreballador", treballadorJSON, obtainHeaderWithTokens.Instance);
     }
@@ -66,6 +66,11 @@ export class guardiaApi {
         }
 
         return {headers: new HttpHeaders(header)}
+    }
+
+    apuntarTreballador(treballador: string|null, idGuardia: string|undefined): Observable<any>{
+        const treballadorJSON = {usuari: treballador?.toString(), idGuardia: idGuardia?.toString(), usuariMOD: treballador?.toString()};
+        return this.http.post("http://localhost:4000/api/treballadorsApuntats/apuntarTreballador", treballadorJSON, obtainHeaderWithTokens.Instance);
     }
 
 }
